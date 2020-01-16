@@ -1,0 +1,169 @@
+\chapter{Pertemuan 1}
+
+\section{Issues \#1}
+Pada \textit{issues \#1} (\textit{Hardcoded String}) \textit{Hardcoded string} sebenarnya bukan merupakan \textit{error}, namun hanya sebagai peringatan. Peringatan ini terjadi karena menyimpan \textit{hard code string} pada file \textit{layout}. 
+\begin{verbatim}
+ android:text="Tabungan anda"
+\end{verbatim}
+Pemecahan dari Hardcoded String tersebut adalah dengan menuliskan\textit{string} pada file terpisah yang telah disediakan yaitu String.XML. Penulisan \textit{Hardcode String} yang terpisah pada file String.XML ini dapat memudahkan developer pada saat akan melakukan pengubahan nama. Developer hanya perlu mengubah pada file String.XML.
+
+Solusinya, Pada file String.XML dituliskan baris kode seperti:
+\begin{verbatim}
+<resources>
+<string name="app_name">Qeuangans</string>
+<string name="Tabungan_anda">Tabungan Anda</string>
+</resources>
+\end{verbatim}
+
+Kemudian, untuk Memanggil \textit{Hardcoded String} mengunakan perintah:
+\begin{verbatim}
+android:text="@string/Tabungan_anda
+\end{verbatim}
+Perintah tersebut dituliskan pada MainActivity.XML
+
+\section{Issues \#2}
+Pada \textit{issues \#2} (\textit{Error: Tag start is Not Closed}) berisi \textit{Error} pada file XML. Masalah ini disebabkan karena pada file XML tersebut terdapat baris perintah tanpa \textit{tag} penutup. XML merupakan file (\textit{eXtensible Markup Language}) dan merupakan bahasa \textit{Markup} layaknya bahasa HTML. Pada bahasa XML ini diperlukan tag pembuka dan penutup(contoh: </>), jika ada salah satu tag (baik pembuka maupun penutup) yang tidak ditulis, maka akan terbentuk error dan baris perintah tidak akan di eksekusi.
+\begin{verbatim}
+<TextView android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentTop="true"
+android:layout_marginTop="18dp"
+android:textColor="#000000"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintLeft_toLeftOf="parent"
+app:layout_constraintRight_toRightOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+android:text="@string/Tabungan_anda" 
+\end{verbatim}
+
+Pada \textit{error} ini memperbaikinya dengan cara menambahkan tag pada akhir baris perintah.
+\begin{verbatim}
+<TextView android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentTop="true"
+android:layout_marginTop="18dp"
+android:textColor="#000000"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintLeft_toLeftOf="parent"
+app:layout_constraintRight_toRightOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+android:text="@string/Tabungan_anda" />
+\end{verbatim}
+
+\section{Issues \#3}
+Pada \textit{issues \#3} (\textit{Unusend Import Statement}) yaitu ketika kita akan mengimport suatu \textit{statement} maka akan menuliskannya pada awal baris kode. Mengimport disini berarti mengambil method yang ada pada kelas lain. Namun, \textit{Unused Import Statement} akan muncul ketika ada baris \textit{import} yang tidak digunakan. Hal ini hanya berupa peringatan dan bukan error.
+\begin{verbatim}
+package com.example.qeuangans;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View; //Unused Import Statement: Issues \#6
+import android.widget.AdapterView; //Unused Import Statement: Issues \#6
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
+\end{verbatim}
+
+Solusinya adalah dengan menghapus import yang tidak digunakan karena methodnya tidak dibuat, maka perintah import tersebut dihapus. 
+\begin{verbatim}
+package com.example.qeuangans;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
+\end{verbatim}
+
+\section{Issues \#4}
+Pada \textit{issues \#4} (\textit{Error: Cannot Resolve Method}) disini merupakan jenis \textit{error} yang disebabkan karena pemanggilan method yang salah atau method yang belum dibuat. Namun ketika baris kode ini dijalankan tidak ada nama method yang sesuai. Pada kasus ini, terdapat method yang belum dibuat namun sudah dipanggil. Kode Untuk memanggilnya menggunakan.
+\begin{verbatim}
+jmlSaldo();
+\end{verbatim}
+Pada pemanggilan tersebut terdapat method yang belum dibuat.
+
+Solusi yang harus dilakukan adalah dengan menambahkan method dengan nama jmlSaldo(); beserta isi dari method yang dipanggil tersebut.
+\begin{verbatim}
+private void jmlSaldo() {
+        Cursor cursor = db.saldo();
+        while (cursor.moveToNext()) {
+        textsaldo.append("Rp " + cursor.getString(0) + ",00");
+        }
+}
+\end{verbatim}
+
+\section{Issues \#5}
+Pada \textit{issues \#5} (\textit{Error: Cannot Resolve Symbol}) Merupakan jenis error ketika ada objek yang dipanggil namun id nya tidak sama atau tidak ada (\textit{typo}), yang membuat baris kode tersebut tidak terbaca dan error sehingga objek untuk menampilkan saldo pada tampilah aplikasi tidak akan muncul.
+\begin{verbatim}
+<TextView
+android:layout_width="match_parent"
+android:layout_height="57dp"
+android:layout_alignParentTop="true"
+android:layout_marginTop="58dp"
+android:hint="@string/Rp00"
+android:textColor="#000000"
+android:textSize="20sp" 
+android:id="@+id/textado" <!-- Cannot Resolve Symbol: Issues #3--> />
+\end{verbatim}
+
+Solusinya adalah memberi id sesuai dengan yang dipanggil sehingga tampilan saldo akan muncul.
+\begin{verbatim}
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="58dp"
+        android:hint="@string/Rp00"
+        android:textColor="#000000"
+        android:textSize="20sp" 
+        android:id="@+id/textsaldo" <!-- Cannot Resolve Symbol: Issues #3--> />
+\end{verbatim}
+
+\section{Issues \#6}
+Pada \textit{issues \#6} (\textit{intent Pindah()}) ini digunakan sebagai perintah untuk pindah dari \textit{Activity} yang satu ke yang lainnya. Intent merupakan objek yang menyediakan fungsi untuk pindah dari satu \textit{activity} ke \textit{activity} lainnya. Penggunaan intent dari \textit{method} pindah sebagai berikut:
+\begin{verbatim}
+public void Pindah(View view) {
+        Intent intent = new Intent(MainActivity.this, InputData.class);
+        startActivity(intent);
+    }
+\end{verbatim}
+Intent pada method ini digunakan untuk pindah dari \textit{Activity} MainActivity.class ke \textit{Activity} InputData.class. Intent disini diaktifkan dengan perintah startActivity(intent); 
+
+\section{Issues \#7}
+Pada \textit{issues \#7} (\textit{Error: Semicolon Expected}) \textit{Semicolon Expected} adalah \textit{error} yang terjadi ketika sebuah baris program yang sudah ditulis kekurangan tanda \textit{semicolon}(;) pada akhir dari program, sehingga ketika baris program di eksekusi akan memunculkan peringatan \textit{error Semicolon Expected}. Contoh error:
+\begin{verbatim}
+startActivity(intent)
+\end{verbatim}
+Solusinya adalah dengan menambahkan \textit{semicolon}(;) pada akhir baris program.
+\begin{verbatim}
+startActivity(intent);
+\end{verbatim}
+
+\section{Issues \#8}
+Pada \textit{issues \#8} (\textit{Error: Cannot resolve symbol}) \textit{Cannot Resolve Symbol} disini adalah ketika sebuah method yang menggunakan method dari kelas lainnya tapi tidak melakukan impor method maka akan muncul error ini. Solusinya adalah dengan cara menambahkan import method pada awal kode program.
+
+\section{Issues \#9}
+Pada \textit{issues \#9} (\textit{Error: \} Expected}) merupakan error yang disebabkan karena kurangnya tanda (\}) pada akhir kode program. Sama halnya seperti file XML yang memmerlukan tag pembuka dan penutup, sebuah method pada java juga harus menggunakan tanda pembuka(\{) dan tanda penutupnya(\}). Contoh \textit{Error: \} Expected}:
+\begin{verbatim}
+public void Pindah(View view) {
+        Intent intent = new Intent(MainActivity.this, InputData.class);
+        startActivity(intent);
+\end{verbatim}
+Solusinya adalah dengan menambahkan tanda penutup\} pada akhir method
+\begin{verbatim}
+public void Pindah(View view) {
+        Intent intent = new Intent(MainActivity.this, InputData.class);
+        startActivity(intent);
+}
+\end{verbatim}
+
+\section{Issues \#10}
+Pada \textit{issues \#10} (\textit{Error: Missing Parent}) \textit{Missing Parent} adalah \textit{error} yang disebabkan ketika kita ingin mendefinisikan objek namun belum mengimport library nya.
