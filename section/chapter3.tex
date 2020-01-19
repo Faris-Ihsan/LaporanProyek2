@@ -3,14 +3,7 @@
 
 %Belum Dikerjakan 
 \section{Issues \#21}
-Pada \textit{issues \#21} (\textit{Error: Cannot Resolve Symbol}) \textit{Cannot Resolve symbol} Merupakan activity yang utama ketika program dijalankan. Pada saat cek mainActivity, Program sudah bisa berjalan tanpa error. 
-\begin{figure}[]
-        \centering
-        \includegraphics[scale = 0.3]{pictures/mainActivity.png}
-        \caption{Gambar tampilan mainActivity}
-        \label{mainActivity}
-\end{figure}
-
+Pada \textit{issues \#21} (\textit{Error: Cannot Resolve Symbol}) \textit{Cannot Resolve symbol} 
 
 \section{Issues \#22}
 Pada \textit{issues \#22} (Test Notifikasi) issues ini berisi test dari notifikasi yang sudah berjalan. Notifikasi ini menggunakan method Notiftest yang diletakan pada mainActivity.java.
@@ -28,15 +21,15 @@ NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
 
 \section{Issues \#23}
 Pada \textit{issues \#23} (Membuat layout pemasukan dan pengeluaran)layout dibuat dalam file xml dengan memasukan tombol-tombol dan inputan text. Dalam pembuatan layout ini menggunakan cara \textit{Drag and Drop} melalui opsi yang sudah disediakan oleh android studio dan menghasilkan tampilan seprti: 
-\begin{figure}[]
+\begin{figure}
     \centering
     \includegraphics[scale = 0.3]{pictures/pemasukan_layout.png}
     \caption{Gambar Layout Pemasukan}
-    \label{layout_pemasukan}
-
+\end{figure}
+\begin{figure}
+    \centering
     \includegraphics[scale = 0.3]{pictures/pengeluaran_layout.png}
     \caption{Gambar Layout Pengeluaran}
-    \label{layout_pengeluaran}
 \end{figure}
 
 \section{Issues \#24}
@@ -114,11 +107,11 @@ String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar
 pada InputData.java
 
 \section{Issues \#28}
-Pada \textit{issues \#28} (Menambahkan \textit{Casting} pada InputData2.java) casting ini dilakukan untuk mensingkronisasi view pada file activity_InputData2.XML dengan InputData2.java.
+Pada \textit{issues \#28} (Menambahkan \textit{Casting} pada InputData2.java) casting ini dilakukan untuk mensingkronisasi view pada file activity\_InputData2.XML dengan InputData2.java.
 \begin{verbatim}
 jenispengeluaran = findViewById(R.id.jenispengeluaran);
 \end{verbatim}
-jenis pengeluaran disini merupakan \textit{variable} yang dapat dipanggil. Dalam \textit{variable} tersebut terdapat \textit{findViewById} yang digunakan untuk mencari view pada activity_InputData2.XML dan \textit{R.id.jenispengeluaran} merupakan id dari view yang akan di sinkronisasi pada activity_InputData2.XML
+jenis pengeluaran disini merupakan \textit{variable} yang dapat dipanggil. Dalam \textit{variable} tersebut terdapat \textit{findViewById} yang digunakan untuk mencari view pada activity\_InputData2.XML dan \textit{R.id.jenispengeluaran} merupakan id dari view yang akan di sinkronisasi pada activity\_InputData2.XML
 
 
 \section{Issues \#29}
