@@ -1,29 +1,103 @@
+\chapter{Pertemuan 5}
+
 \section{Issues \#41}
-Pada \textit{issues \#41}
+Pada \textit{issues \#41}(Menambahkan perintah pada onUpgrade database helper). Penambahan perintah yang dilakukan ini agar database di-replace ketika sudah ada filenya pada perangkat yang digunakan. PErintah ini ditulis pada DatabaseHelper
+\begin{verbatim}
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS "+TBLNAME);
+        db.execSQL("DROP TABLE IF EXISTS "+TBLNAME2);
+        onCreate(db);
+    }
+\end{verbatim}
 
 \section{Issues \#42}
-Pada \textit{issues \#42}
+Pada \textit{issues \#42}(Mengubah list.java). Pengubahan pada list ini digunakan untuk meisahkan antara list pemasukan dan pengeluaran 
+\begin{verbatim}
+    if (cursor.getCount() == 0) {
+        Toast.makeText(this, "TIDAK ADA DATA", Toast.LENGTH_SHORT)
+        .show();
+    } else {
+        while (cursor.moveToNext()) {
+            listitem.add("\n" + "Tanggal : " + cursor.getString(3) 
+                        + "\n" + "\n" + "Jenis Pemasukan : " 
+                        + cursor.getString(1)
+                        + "\n" + "Jumlah : Rp " + cursor.getString(2) 
+                        + ",00" + "\n");
+            }
+            final ArrayAdapter adapter = new ArrayAdapter<>
+            (this, android.R.layout.simple_list_item_1, listitem);
+            listView.setAdapter(adapter);
+\end{verbatim}
 
 \section{Issues \#43}
-Pada \textit{issues \#43}
+Pada \textit{issues \#43}(Menambahkan List2.java) Penambahan ini dilakukan melalui \textit{new} pada aplikasi android studio.
+New -- activity -- empty activity
 
 \section{Issues \#44}
-Pada \textit{issues \#44}
+Pada \textit{issues \#44}(Menambahkan ListView pada activity\_list2.xml). Untuk menambahkan listView ini, dengan cara \textit{drag n drop} melalui palletes yang ada pada desain activity\_list2.xml
+Namun Bisa juga dengan melakukannya secara manual dengan menginputkan baris kode ini:
+\begin{verbatim}
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+    android:id="@+id/listView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+\end{verbatim}
 
 \section{Issues \#45}
-Pada \textit{issues \#45}
+Pada \textit{issues \#45}(Menambahkan perintah untuk menampilkan data pada List2.java). Penambahan perintah untuk menampilkan data pada arraylist yang diambil dari database.
 
 \section{Issues \#46}
-Pada \textit{issues \#46}
+Pada \textit{issues \#46}(\textit{Error: Cannot Resolve Method tampilkanDataKeluar()}). Error ini terjadi karena method yang dipanggil tidak ada, maka kita harus membuat methodnya pada DatabaseHelper.java
+\begin{verbatim}
+    public Cursor tampilkanDataKeluar() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res;
+        res = db.rawQuery("SELECT * FROM " + TBLNAME2, null);
+        return res;
+    }
+\end{verbatim}
 
 \section{Issues \#47}
-Pada \textit{issues \#47}
+Pada \textit{issues \#47}(\textit{Error: ; expected}). Error ini terjadi karena kekurangan tanda ; pada akhir baris kode.
+\begin{verbatim}
+    public Cursor tampilkanDataKeluar() { 
+    SQLiteDatabase db = this.getReadableDatabase();
+    Cursor res;
+    res = db.rawQuery("SELECT * FROM "+TBLNAME2,null);
+    return 
+\end{verbatim}
+Solusi: Menambahkan tanda ; pada akhir baris kode setelah perintah \textit{retutn}
+\begin{verbatim}
+    return;
+\end{verbatim}
 
 \section{Issues \#48}
-Pada \textit{issues \#48}
+Pada \textit{issues \#48}(\textit{Error: '\}' expected}). Error ini terjadi karena kekurangan tanda kurung tutup (\}) pada akhir method atau prosedur.
+\begin{verbatim}
+    public Cursor tampilkanDataKeluar() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res;
+        res = db.rawQuery("SELECT * FROM " + TBLNAME2, null);
+        return res;
+\end{verbatim}
+Solusi: Menambahkan \} pada akhir method
+\begin{verbatim}
+    public Cursor tampilkanDataKeluar() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res;
+        res = db.rawQuery("SELECT * FROM " + TBLNAME2, null);
+        return res;
+    }
+\end{verbatim}
 
 \section{Issues \#49}
-Pada \textit{issues \#49}
+Pada \textit{issues \#49}(Set Tanggal Otomatis Hari Ini ).
+Untuk set tanggal otomatis hari ini dengan menuliskan 
+\begin{verbatim}
+    tglpengeluaran.setText(currentDate);
+\end{verbatim}
+Pada inputData2.java
 
 \section{Issues \#50}
 Pada \textit{issues \#50}

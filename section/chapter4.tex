@@ -1,29 +1,102 @@
-\section{Issues \#31}
-Pada \textit{issues \#31}
+\chapter{Pertemuan 4}
 
-\section{Issues \#32}
-Pada \textit{issues \#32}
+\section{Issues \#31}
+Pada \textit{issues \#31} (Menambahkan \textit{Casting} pada InputData2.java) casting ini dilakukan untuk mensingkronisasi view pada file activity\_InputData2.XML dengan InputData2.java.
+\begin{verbatim}
+jenispengeluaran = findViewById(R.id.jenispengeluaran);
+\end{verbatim}
+jenis pengeluaran disini merupakan \textit{variable} yang dapat dipanggil. Dalam \textit{variable} tersebut terdapat \textit{findViewById} yang digunakan untuk mencari view pada activity\_InputData2.XML dan \textit{R.id.jenispengeluaran} merupakan id dari view yang akan di sinkronisasi pada activity\_InputData2.XML
+
+\section{Issues \#32} 
+Pada \textit{issues \#32} (penambahan perintah SQL) Perintah SQL ini ditambahkan untuk melakukan input data ke database yang diinputkan pada DatabaseHelper.java
+\begin{verbatim}
+    db.execSQL("create table "+ TBLNAME +"(ID INTEGER PRIMARY KEY AUTOINCREMENT, JENIS_PEMASUKAN STRING," +
+                "PEMASUKAN NUMBER, JENIS_PENGELUARAN STRING, PENGELUARAN NUMBER, TANGGAL STRING)");
+                "PEMASUKAN NUMBER, JENIS_PENGELUARAN STRING, PENGELUARAN NUMBER, " +
+                "TANGGAL_PEMASUKAN STRING, TANGGAL_PENGELUARAN STRING)"); 
+\end{verbatim}
 
 \section{Issues \#33}
-Pada \textit{issues \#33}
+Pada \textit{issues \#33} (\textit{Error: setVibrate(long[]) in Builder cannot be applied to ()}) disebabkan karena perintah .setVibrate(); hanya bisa menerima tipe data Array. Maka melakukan perubahan kode seperti ini:
+\begin{verbatim}
+    long[] PolaGetar = {100, 100};
+    .setVibrate(PolaGetar);
+\end{verbatim}
 
 \section{Issues \#34}
-Pada \textit{issues \#34}
+Pada \textit{issues \#34}(mengubah gambar pada notifikasi). Pengubahan atau penambahan gambar pada notifikasi dengan menambahkan baris kode seperti dibawah pada method notifikasi.
+\begin{verbatim}
+    .setSmallIcon(R.drawable.ic_cash)
+\end{verbatim}
 
 \section{Issues \#35}
-Pada \textit{issues \#35}
+Pada \textit{issues \#35} (\textit{Cannot resolve method 'setContentTitle(java.lang.string)'}) Penyebabnya adalah Kekurangan tanda kurung tutup pada
+\begin{verbatim}
+    .setSmallIcon(R.drawable.ic_cash
+    .setContentTitle("Issues Notif")
+\end{verbatim}
+solusinya dengan menambahkan kurung tutup pada 
+\begin{verbatim}
+    .setSmallIcon(R.drawable.ic_cash)
+\end{verbatim}
 
 \section{Issues \#36}
-Pada \textit{issues \#36}
+Pada \textit{issues \#36} (\textit{Error: ) expected}). Penyebabnya adalah kurangnya tanda ) pada 
+\begin{verbatim}
+    notificationManager.notify(NOTIFICATION_ID,builder.build();
+\end{verbatim}
+Solusinya menambahkan kurung tutup pada baris kode tersebut seperti:
+\begin{verbatim}
+    notificationManager.notify(NOTIFICATION_ID,builder.build());
+\end{verbatim}
 
 \section{Issues \#37}
-Pada \textit{issues \#37}
+Pada \textit{issues \#37}(\textit{Array initializer is not allowed here}).
+\begin{verbatim}
+    long PolaGetar = {100, 100};
+\end{verbatim}
+Karena pada baris tersebut tidak ada tanda [] setelah long yang menandakan bahwa tipe data tersebuat adalah array.\\
+Solusinya adalah dengan menambahkan [] setelah long untuk menandakan bahwa data tersebut merupakan array.
+\begin{verbatim}
+    long [] PolaGetar = {100, 100};
+\end{verbatim}
 
 \section{Issues \#38}
-Pada \textit{issues \#38}
+Pada \textit{issues \#38} (\textit{Error: when INSERT INTO tabungan}). Error ini terjadi ketika akan memasukan data input pemasukan ke dalam tabel tabungan pada field Jenis\_pemasukan, Jumlah\_pemasukan, tanggal. Hal ini terjadi karena field tanggal tidak ada.
+Solusi, menambahkan field tanggal\_pemasukan pada DatabaseHelper
+\begin{verbatim}
+    public static final String COL6 = "TANGGAL_PEMASUKAN";
+\end{verbatim}
 
 \section{Issues \#39}
-Pada \textit{issues \#39}
+Pada \textit{issues \#39}(Mengubah Format Penulisan Tanggal). Untuk mengubah format penulisan tanggal menggunakan perintah yang dimasukan pada input data.java
+\begin{verbatim}
+    final Calendar calendar = Calendar.getInstance();
+    String currentDate = DateFormat.getDateInstance(DateFormat.FULL)
+    .format(calendar.getTime());
+
+    myDB = new DatabaseHelper(this);
+
+
+    calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                String date = DateFormat.getDateInstance(DateFormat.FULL)
+                .format(calendar.getTime());
+\end{verbatim}
 
 \section{Issues \#40}
-Pada \textit{issues \#40}
+Pada \textit{issues \#40}(Menambahkan perintah SQL pembuatan tabel). Perintah SQL ini ditulis dalam method public void onCreate(SQLiteDatabase db) pada DatabaseHelper.java
+\begin{verbatim}
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table "+ TBLNAME +
+        "(ID_PEMASUKAN INTEGER PRIMARY KEY AUTOINCREMENT," + 
+        "JENIS_PEMASUKAN STRING, PEMASUKAN NUMBER," +
+         "TANGGAL_PEMASUKAN STRING)");
+
+        db.execSQL("create table "+ TBLNAME2 +
+        "(ID_PENGELUARAN INTEGER PRIMARY KEY AUTOINCREMENT," +
+        "JENIS_PENGELUARAN STRING, PENGELUARAN NUMBER," + 
+        "TANGGAL_PENGELUARAN STRING)");
+    }
+\end{verbatim}

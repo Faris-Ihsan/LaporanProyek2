@@ -40,9 +40,14 @@ ListView listLaporanK;
             Toast.makeText(this, "TIDAK ADA DATA", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                LK.add("\n" + cursor.getString(0) + "\n" + "Tanggal : " + cursor.getString(5) + "\n" + "\n" + "Pemasukan : " + cursor.getString(1)
-                        + "\n" + "Jumlah : Rp " + cursor.getString(2) + ",00" + "\n" + "\n" + "Pengeluaran : " + cursor.getString(3)
-                        + "\n" + "Jumlah : Rp" + cursor.getString(4) + ",00" + "\n");
+                LK.add("\n" + cursor.getString(0) + "\n" + "Tanggal : "
+                + cursor.getString(5) + "\n" + "\n" + "Pemasukan : " 
+                + cursor.getString(1)
+                        + "\n" + "Jumlah : Rp " + cursor.getString(2) 
+                        + ",00" + "\n" + "\n" + "Pengeluaran : " 
+                        + cursor.getString(3)
+                        + "\n" + "Jumlah : Rp" + cursor.getString(4) 
+                        + ",00" + "\n");
             }
         }
     }
@@ -116,16 +121,18 @@ Pada \textit{issues \#19} (\textit{Error: Cannot return value from void method.}
 public void datalaporankeluar(){ 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor saldo;
-        saldo = db.rawQuery("SELECT SUM(" +COL3+")-SUM(" +COL5+") FROM "+TBLNAME, null);
+        saldo = db.rawQuery("SELECT SUM(" +COL3+")-SUM(" +COL5+") FROM "
+        +TBLNAME, null);
         return saldo;
     }
 \end{verbatim}
 Sedangkan void sendiri merukpakan method yang tidak mengembalikan nilai sehingga return tidak bisa digunakan pada method void. Untuk solusinya yaitu dengan membuat methud tersebut menjadi function. Contoh: 
 \begin{verbatim}
-public Cursor datalaporankeluar(){ // Cannot return value from void method.  // Solusi ERROR 18. Issues #20 //
+public Cursor datalaporankeluar(){ 
     SQLiteDatabase db = this.getReadableDatabase();
     Cursor saldo;
-    saldo = db.rawQuery("SELECT SUM(" +COL3+")-SUM(" +COL5+") FROM "+TBLNAME, null);
+    saldo = db.rawQuery("SELECT SUM(" +COL3+")-SUM(" +COL5+") FROM "
+    +TBLNAME, null);
     return saldo;
 }
 \end{verbatim}

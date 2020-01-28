@@ -14,7 +14,8 @@ NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
            .setContentTitle("Issues Notif")
         .setAutoCancel(true)
         .setContentText("Berhasil Pak");
-    NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationManager notificationManager = 
+    (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
     notificationManager.notify(NOTIFICATION_ID,builder.build());
 }
 \end{verbatim}
@@ -42,15 +43,19 @@ final int day = calendar.get(Calendar.DAY_OF_MONTH);
 tglpengeluaran.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        DatePickerDialog datepickerdialog = new DatePickerDialog(InputData2.this,
-                android.R.style.Theme_Holo_Light_Dialog_MinWidth,setListener,year,month,day);
-        datepickerdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        DatePickerDialog datepickerdialog = 
+        new DatePickerDialog(InputData2.this,
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                setListener, year,month,day);
+        datepickerdialog.getWindow().setBackgroundDrawable
+        (new ColorDrawable(Color.TRANSPARENT));
         datepickerdialog.show();
     }
 });
 setListener = new DatePickerDialog.OnDateSetListener() {
     @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMont) {
+    public void onDateSet(DatePicker datePicker, int year, int month, 
+    int dayOfMont) {
         month = month+1;
         String date = day+"/"+month+"/"+year;
         tglpengeluaran.setText(date);
@@ -58,24 +63,72 @@ setListener = new DatePickerDialog.OnDateSetListener() {
 };
 \end{verbatim}
 
-\section{Issues \#25}
-Pada \textit{issues \#25} (Mengubah Pungsi Pada Pemasukan). Pengubahan fungsi ini dilakukan pada InputData.java karena layout pemasukan dan pengeluaran yang dibagi menjadi dua.
 
-\section{Issues \#26} 
-Pada \textit{issues \#26} (\textit{Error: Cannot Resolve Symbol 'jenispengeluaran'})
+\section{Issues \#25}
+Pada \textit{issues \#25} Menambahkan getar pada notifikasi. Bars kode ini dimasukan pada method notiftest pada mainActivity.java
+\begin{verbatim}
+    .setContentText("Berhasil Pak");
+\end{verbatim}
+
+\section{Issues \#26}
+Pada \textit{issues \#26} Menambahkan \textit{DatePickerDialog} pada InputData.java
+\begin{verbatim}
+    tglpemasukan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        InputData.this,android.R.style
+                        .Theme_Holo_Light_Dialog_MinWidth,
+                        setListener,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable
+                (new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        setListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year,
+            int month, int dayOfMonth) {
+                month = month+1;
+                String date = day+"/"+month+"/"+year;
+                tglpemasukan.setText(date);
+            }
+        };
+\end{verbatim}
+
+
+\section{Issues \#27}
+Pada \textit{issues \#27} menambahkan suara pada notifikasi dengan memasukan 
+\begin{verbatim}
+    .setSound(RingtoneManager.getDefaultUri
+    (RingtoneManager.TYPE_NOTIFICATION));
+\end{verbatim}
+pada Notiftest() pada mainActivity.java
+
+\section{Issues \#28}
+Pada \textit{issues \#28} (Mengubah fungsi Pada Pemasukan). Pengubahan fungsi ini dilakukan pada InputData.java karena layout pemasukan dan pengeluaran yang dibagi menjadi dua.
+
+\section{Issues \#29} 
+Pada \textit{issues \#29} (\textit{Error: Cannot Resolve Symbol 'jenispengeluaran'})
 \begin{verbatim}
 private void AddData() {
     inputmasuk.setOnClickListener(
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                        boolean isInseted = myDB.insertData(jenispemasukan.getText().toString(),
-                                jmlpemasukan.getText().toString(), **jenispengeluaran** .getText().toString(),
-                                jmlpengeluaran .getText().toString(), tglpemasukan.getText().toString());
+                        boolean isInseted = myDB.insertData
+                        (jenispemasukan.getText().toString(),
+                                jmlpemasukan.getText().toString(), 
+                                **jenispengeluaran** .getText().toString(),
+                                jmlpengeluaran .getText().toString(), 
+                                tglpemasukan.getText().toString());
                         if (isInseted = true)
-                            Toast.makeText(InputData.this, "INPUT BERHASIL", Toast.LENGTH_LONG).show();
+                            Toast.makeText(InputData.this, "INPUT BERHASIL", 
+                            Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(InputData.this, "INPUT GAGAL", Toast.LENGTH_LONG).show();
+                            Toast.makeText(InputData.this, "INPUT GAGAL", 
+                            Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -87,35 +140,26 @@ private void AddData() {
             new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                        boolean isInseted = myDB.insertData(jenispemasukan.getText().toString(),
-                                jmlpemasukan.getText().toString(), tglpemasukan.getText().toString());
+                        boolean isInseted = myDB.insertData(jenispemasukan
+                        .getText().toString(),
+                                jmlpemasukan.getText().toString(), tglpemasukan
+                                .getText().toString());
                         if (isInseted = true)
-                            Toast.makeText(InputData.this, "INPUT BERHASIL", Toast.LENGTH_LONG).show();
+                            Toast.makeText(InputData.this, "INPUT BERHASIL", 
+                            Toast.LENGTH_LONG).show();
                         else
-                            Toast.makeText(InputData.this, "INPUT GAGAL", Toast.LENGTH_LONG).show();
+                            Toast.makeText(InputData.this, "INPUT GAGAL", 
+                            Toast.LENGTH_LONG).show();
 
                 }
             }
 \end{verbatim}
 
-\section{Issues \#27}
-Pada \textit{issues \#27} (Menambahkan \textit{Current Date} pada Input Pemasukan (InputData.java)). Current Date disini merupakan tanggal pada hari ini, cara menambahkannya dengan menambahkan baris perintah
+\section{Issues \#30}
+Pada \textit{issues \#30} (Menambahkan \textit{Current Date} pada Input Pemasukan (InputData.java)). Current Date disini merupakan tanggal pada hari ini, cara menambahkannya dengan menambahkan baris perintah
 \begin{verbatim}
 Calendar calendar = Calendar.getInstance();
-String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+String currentDate = DateFormat.getDateInstance(DateFormat.FULL)
+.format(calendar.getTime());
 \end{verbatim}
 pada InputData.java
-
-\section{Issues \#28}
-Pada \textit{issues \#28} (Menambahkan \textit{Casting} pada InputData2.java) casting ini dilakukan untuk mensingkronisasi view pada file activity\_InputData2.XML dengan InputData2.java.
-\begin{verbatim}
-jenispengeluaran = findViewById(R.id.jenispengeluaran);
-\end{verbatim}
-jenis pengeluaran disini merupakan \textit{variable} yang dapat dipanggil. Dalam \textit{variable} tersebut terdapat \textit{findViewById} yang digunakan untuk mencari view pada activity\_InputData2.XML dan \textit{R.id.jenispengeluaran} merupakan id dari view yang akan di sinkronisasi pada activity\_InputData2.XML
-
-
-\section{Issues \#29}
-Pada \textit{issues \#29}
-
-\section{Issues \#30}
-Pada \textit{issues \#30}
